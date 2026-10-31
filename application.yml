@@ -7,7 +7,6 @@ spring:
       ddl-auto: update
     show-sql: true      
   datasource:
-    url: jdbc:postgresql://localhost:5432/razorpayDB
     username: postgres
     password: postgres
   data:
@@ -59,48 +58,10 @@ logging:
     org.apache.kafka.clients: WARN
     org.apache.kafka.common: WARN
 
-payment:
-  simulator:
-    poll-interval-ms: 5000
-    chaos-mode: SUCCESS
-    methods:
-      CARD:
-        min-delay-seconds: 2
-        max-delay-seconds: 6
-        success-rate: 90
-      UPI:
-        min-delay-seconds: 1
-        max-delay-seconds: 3
-        success-rate: 95
-      NET_BANKING:
-        min-delay-seconds: 4
-        max-delay-seconds: 10
-        success-rate: 80
-
-settlement:
-  simulator:
-    poll-interval-ms: 5000
-    chaos-mode: SUCCESS
-    min-delay-seconds: 2
-    max-delay-seconds: 8
-    success-rate: 90
-
 app:
-  rate-limit:
-    method: bucket
-    use-case:
-      api-key:
-        requests-per-minute: 200 # change in production
-  outbox:
-    poll-interval-ms: 5000
   kafka:
       topics:
         payment: payment.events
         order: order.events
         refund: refund.events
         settlement: settlement.events
-  webhook:
-      delivery:
-        redis-key: "webhook-retry"
-        poll-batch-size: 100
-        max-concurrency: 50
