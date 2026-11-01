@@ -6,14 +6,15 @@ app:
     trust-inbound-headers: false
     public-routes:
       - "/v1/auth/**"
-      -"/webhook/**"
+      - "/webhook/**"
   rate-limit:
     method: fixed
     use-case:
       api-key:
-        request-per-minute: 200
+        requests-per-minute: 200
 
-cloud:
+spring:
+  cloud:
     gateway:
       server:
         webmvc:
@@ -21,12 +22,12 @@ cloud:
             - id: merchant-service
               uri: lb://merchant-service
               predicates:
-                - Path=/v1/auth/**, /v1/merchants/**
+                - Path=/v1/auth/**,/v1/merchants/**
 
             - id: payment-service
               uri: lb://payment-service
               predicates:
-                - Path=/v1/orders/**, /v1/payments/**
+                - Path=/v1/orders/**,/v1/payments/**
 
             - id: vault-service
               uri: lb://vault-service
@@ -34,7 +35,9 @@ cloud:
                 - Path=/v1/vault/**
 
             - id: operations-service
-              uri: lb://operations-service
+              uri: lb://operations-service 
+              predicates:
+                - Path=/webhook/**
         
 jwt:
   secret-key: dont-use-in-prod-a9asd7fulasjdfaklsdfu98q3uhjdiosh897as9d8f7ua9osufdjilasdjf
