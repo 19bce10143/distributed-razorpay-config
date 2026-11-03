@@ -35,4 +35,18 @@ resilience4j:
         wait-duration: 500ms
       vault-service:
         max-attempts: 3
-        wait-duration: 500ms            
+        wait-duration: 500ms  
+  thread-pool-bulkhead:
+    instances:
+      payment-card-processor:
+        core-thread-pool-size: 5
+        max-thread-pool-size: 10
+        queue-capacity: 20     
+      payment-net-banking-processor:
+        core-thread-pool-size: 5
+        max-thread-pool-size: 10
+        queue-capacity: 20
+      payment-upi-processor:
+        core-thread-pool-size: 5
+        max-thread-pool-size: 10
+        queue-capacity: 20                   

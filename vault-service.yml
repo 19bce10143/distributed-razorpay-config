@@ -6,4 +6,12 @@ spring:
     url: jdbc:postgresql://localhost:5432/razorpay-vault-db
 
 vault:
-  master-key: OmJzIAFZQjRdA7F97y1yXietbnXdj6sClYLczdujbr4= 
+  master-key: OmJzIAFZQjRdA7F97y1yXietbnXdj6sClYLczdujbr4=
+
+resilience4j:
+  thread-pool-bulkhead:
+    instances:
+      vault-card-processor:
+        core-thread-pool-size: 5
+        max-thread-pool-size: 10
+        queue-capacity: 20
