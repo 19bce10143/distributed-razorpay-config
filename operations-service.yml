@@ -38,9 +38,19 @@ resilience4j:
         wait-duration: 500ms                
     
 app:
+  kafka:
+    refund-accounting-group: operations-refund-accounting
   webhook:
     delivery:
       redis-key: "webhook-retry"
       poll-batch-size: 100
       max-concurrency: 50
+
+settlement:
+  simulator:
+    poll-interval-ms: 5000
+    chaos-mode: SUCCESS
+    min-delay-seconds: 2
+    max-delay-seconds: 8
+    success-rate: 90      
       

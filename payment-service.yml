@@ -49,4 +49,32 @@ resilience4j:
       payment-upi-processor:
         core-thread-pool-size: 5
         max-thread-pool-size: 10
-        queue-capacity: 20                   
+        queue-capacity: 20    
+
+payment:
+  simulator:
+    poll-interval-ms: 5000
+    chaos-mode: SUCCESS
+    methods:
+      CARD:
+        min-delay-seconds: 2
+        max-delay-seconds: 6
+        success-rate: 90
+      UPI:
+        min-delay-seconds: 1
+        max-delay-seconds: 3
+        success-rate: 95
+      NET_BANKING:
+        min-delay-seconds: 4
+        max-delay-seconds: 10
+        success-rate: 80        
+
+refund:
+  simulator:
+    enabled: true
+    poll-interval-ms: 2000
+    batch-size: 100
+    chaos-mode: NORMAL
+    min-delay-seconds: 1
+    max-delay-seconds: 5
+    success-rate: 100               
