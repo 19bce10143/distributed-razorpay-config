@@ -78,3 +78,15 @@ refund:
     min-delay-seconds: 1
     max-delay-seconds: 5
     success-rate: 100               
+
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: k8s
+  datasource:
+    url: jdbc:postgresql://postgres.razorpay-core.svc.cluster.local:5432/razorpay-payment-db
+    username: payment_user
+    password: ${PAYMENT_DB_PASSWORD}    
