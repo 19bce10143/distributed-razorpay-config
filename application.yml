@@ -9,6 +9,8 @@ spring:
     show-sql: true      
     
   datasource:
+    hikari:
+      maximum-pool-size: 50
     username: postgres
     password: postgres
     
