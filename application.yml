@@ -87,12 +87,14 @@ logging:
     io.micrometer.tracing: DEBUG
 
 app:
+  idempotency:
+    excluded-paths: /v1/orders/{orderId}/checkout-code
   kafka:
-      topics:
-        payment: payment.events
-        order: order.events
-        refund: refund.events
-        settlement: settlement.events
+    topics:
+      payment: payment.events
+      order: order.events
+      refund: refund.events
+      settlement: settlement.events
 
 
 ---
