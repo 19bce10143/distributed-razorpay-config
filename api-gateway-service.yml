@@ -9,6 +9,29 @@ app:
       - "/webhook/**"
       - "/actuator/prometheus"
       - "/actuator/health"
+    auth-rules:
+      - path: /v1/merchants/**
+        methods: [GET, HEAD, POST, PUT, DELETE]
+        schemes: [BASIC, BEARER]
+      - paths:
+          - /v1/orders
+          - /v1/orders/{orderId}/checkout-code
+          - /v1/orders/{orderId}/cancel
+          - /v1/payments/{paymentId}/capture
+        methods: [POST]
+        schemes: [BASIC]
+      - path: /v1/orders/{orderId}
+        methods: [GET, HEAD]
+        schemes: [BASIC, CHECKOUT]
+      - path: /v1/payments
+        methods: [POST]
+        schemes: [CHECKOUT]
+      - path: /v1/payments/{paymentId}/refunds
+        methods: [POST, GET, HEAD]
+        schemes: [BASIC]
+      - path: /v1/payments/{paymentId}/refunds/{refundId}
+        methods: [GET, HEAD]
+        schemes: [BASIC]  
   rate-limit:
     method: fixed
     use-case:
