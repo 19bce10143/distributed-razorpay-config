@@ -31,7 +31,10 @@ app:
         schemes: [BASIC]
       - path: /v1/payments/{paymentId}/refunds/{refundId}
         methods: [GET, HEAD]
-        schemes: [BASIC]  
+        schemes: [BASIC]
+      - path: /v1/vault/tokenize
+        methods: [POST]
+        schemes: [CHECKOUT]
   rate-limit:
     method: fixed
     use-case:
