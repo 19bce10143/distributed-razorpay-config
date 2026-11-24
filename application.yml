@@ -10,7 +10,8 @@ spring:
     
   datasource:
     hikari:
-      maximum-pool-size: 50
+      maximum-pool-size: 10
+      minimum-idle: 2
     username: postgres
     password: postgres
     
