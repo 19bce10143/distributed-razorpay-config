@@ -35,6 +35,9 @@ app:
       - path: /v1/vault/tokenize
         methods: [POST]
         schemes: [CHECKOUT]
+      - path: /internal/payments/{paymentId}/authorization-result
+        methods: [POST]
+        schemes: [BANK_CALLBACK]  
   rate-limit:
     method: fixed
     use-case:
