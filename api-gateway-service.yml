@@ -26,6 +26,9 @@ app:
       - path: /v1/payments
         methods: [POST]
         schemes: [CHECKOUT]
+      - path: /v1/payments/{paymentId}/status
+        methods: [GET]
+        schemes: [CHECKOUT]  
       - path: /v1/payments/{paymentId}/refunds
         methods: [POST, GET, HEAD]
         schemes: [BASIC]
